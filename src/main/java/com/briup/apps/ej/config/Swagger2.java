@@ -38,7 +38,7 @@ public class Swagger2 {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.briup.apps.app02.web"))
+				.apis(RequestHandlerSelectors.basePackage("com.briup.apps.ej.web"))
 				.paths(PathSelectors.any())
 				.build();
 	}
