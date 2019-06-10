@@ -20,16 +20,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * ClassName:Swagger2 <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason:	 TODO ADD REASON. <br/>
- * Date:     2018年6月10日 下午6:22:51 <br/>
- * @author   lichunyu
- * @version  
- * @since    JDK 1.6
- * @see 	 
- */
+
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
@@ -45,9 +36,9 @@ public class Swagger2 {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("智慧校园-学生选课系统")
-				.description("昆山杰普软件科技有限公司，http://www.briup.com")
-				.termsOfServiceUrl("http://www.briup.com")
+				.title("ej家政")
+				.description("有问题请百度，http://www.baidu.com")
+				.termsOfServiceUrl("http://www.baidu.com")
 				.version("1.0")
 				.build();
 	}
