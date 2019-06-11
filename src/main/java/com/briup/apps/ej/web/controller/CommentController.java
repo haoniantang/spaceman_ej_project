@@ -28,4 +28,18 @@ public class CommentController {
         List<Comment> commentList=commentService.findCommentById(order_id);
         return MessageUtil.success("根据订单id查询订单评论成功！",commentList);
     }
+    @ApiOperation("通过评论id删除对应评论")
+    @GetMapping("deleteCommentById")
+    public Message deleteByPrimaryKey(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("id") long id)throws Exception{
+        try{
+            commentService.deleteCommentById(id);
+            return MessageUtil.success("删除成功!");
+        } catch(Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error("删除失败:"+e.getMessage());
+        }
+
+    }
 }

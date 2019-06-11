@@ -11,5 +11,8 @@ public interface ICommentService {
 
     //根据订单id查询评论
     public List<Comment> findCommentById(Long order_id);
+    //根据评论id删除该订单评论
+    public void deleteCommentById(Long id)throws Exception;
+
 
 }
