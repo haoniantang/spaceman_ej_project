@@ -54,7 +54,7 @@ public class CategoryImpl implements ICategoryService {
         if(category1==null){
             throw new Exception("更新的Id分类不存在！");
         }else{
-            categoryMapper.updateByPrimaryKey(category);
+            categoryMapper.updateByPrimaryKeySelective(category);
         }
     }
 }

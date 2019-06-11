@@ -59,7 +59,7 @@ public class AddressServiceImpl implements IAdressService {
         if(address1==null){
             throw new Exception("更新的地址Id不存在！");
         }else{
-            addressMapper.updateByPrimaryKey(address);
+            addressMapper.updateByPrimaryKeySelective(address);
         }
     }
 
