@@ -1,7 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
-import com.briup.apps.ej.bean.Waiter;
-import com.briup.apps.ej.service.IWaiterService;
+import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/waiter")
-public class WaiterController {
+@RequestMapping("/customer")
+public class CustomerController {
     @Autowired
-    private IWaiterService waiterService;
+    private ICustomerService customerService;
 
     @ApiOperation("模糊查询")
     @GetMapping("query")
-    public Message query(Waiter waiter){
-        List<Waiter> list = waiterService.query(waiter);
+    public Message query(Customer customer){
+        List<Customer> list = customerService.query(customer);
         return MessageUtil.success("success",list);
     }
 
 
     @GetMapping("findAll")
     public Message findAll(){
-        List<Waiter> list = waiterService.findAll();
+        List<Customer> list = customerService.findAll();
         return MessageUtil.success("success",list);
     }
 
@@ -39,15 +39,15 @@ public class WaiterController {
     public Message findById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
-        Waiter waiter = waiterService.findById(id);
-        return MessageUtil.success("success",waiter);
+        Customer customer = customerService.findById(id);
+        return MessageUtil.success("success",customer);
     }
 
     @ApiOperation("保存或更新用户信息")
     @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Waiter waiter){
+    public Message saveOrUpdate(Customer customer){
         try {
-            waiterService.saveOrUpdate(waiter);
+            customerService.saveOrUpdate(customer);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class WaiterController {
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            waiterService.deleteById(id);
+            customerService.deleteById(id);
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();
