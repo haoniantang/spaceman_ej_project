@@ -53,7 +53,15 @@ public class AddressServiceImpl implements IAdressService {
         }
     }
 
-
+    @Override
+    public void updateByPrimaryKey(Address address) throws Exception {
+        Address address1=addressMapper.selectByPrimaryKey(address.getId());
+        if(address1==null){
+            throw new Exception("更新的地址Id不存在！");
+        }else{
+            addressMapper.updateByPrimaryKey(address);
+        }
+    }
 
 
 }

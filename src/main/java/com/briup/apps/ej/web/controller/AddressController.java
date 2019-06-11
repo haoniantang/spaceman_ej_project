@@ -66,4 +66,16 @@ public class AddressController {
         }
     }
 
+    //根据地址Id更新地址
+    @GetMapping("updateById")
+    public Message updateById(Address address){
+        try{
+            addressService.updateByPrimaryKey(address);
+            return MessageUtil.success("更新地址成功！");
+        }catch(Exception e){
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
+
 }

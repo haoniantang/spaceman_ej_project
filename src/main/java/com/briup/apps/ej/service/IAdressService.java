@@ -15,6 +15,6 @@ public interface IAdressService {
 
     void insert(Address address) throws Exception;
 
-
+    void updateByPrimaryKey(Address address) throws Exception;
 
 }
