@@ -20,7 +20,7 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
-    public List<Comment> findCommentById(Long order_id) {
+    public List<Comment> findCommentByOrderId(Long order_id) {
         CommentExample commentExample=new CommentExample();
         CommentExample.Criteria criteria=commentExample.createCriteria();
         criteria.andOrderIdEqualTo(order_id);
