@@ -1,7 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
-import com.briup.apps.ej.bean.Customer;
-import com.briup.apps.ej.service.ICustomerService;
+import com.briup.apps.ej.bean.Waiter;
+import com.briup.apps.ej.service.IWaiterService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/waiter")
+public class WaiterController {
     @Autowired
-    private ICustomerService customerService;
+    private IWaiterService waiterService;
+
 
     @GetMapping("findAll")
     public Message findAll(){
-        List<Customer> list = customerService.findAll();
-        return MessageUtil.success("success",list);
+        List<Waiter> list = waiterService.findAll();
+        return MessageUtil.success("查询所有服务员成功！",list);
     }
-
-
 }
