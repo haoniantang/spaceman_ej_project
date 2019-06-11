@@ -46,7 +46,7 @@ public class ProductController {
             return MessageUtil.success("查询当前页的上线产品成功！", pageProduct);
         }
     }
-/*
+
     @ApiOperation("根据分类id查询上线产品")
     @GetMapping("findProductByCategoryId")
     public Message findProductByCategoryId(Long category_id){
@@ -54,13 +54,13 @@ public class ProductController {
 
         List<Product> categoryProduct=productService.findProductByCategoryId(category_id);
         //判断结果是否为空
-        if(categoryProduct.get(0)==null) {
+        if(categoryProduct.size()==0) {
             return MessageUtil.error("该分类没有查询到结果！");
         }else{
             return MessageUtil.success("查询当前页的上线产品成功！", categoryProduct);
         }
     }
-*/
+
     @ApiOperation("添加产品")
     @GetMapping("insertProduct")
     public Message insertProduct(Product product) {
