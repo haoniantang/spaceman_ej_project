@@ -1,7 +1,8 @@
 package com.briup.apps.ej.web.controller;
 
-import com.briup.apps.ej.bean.Customer;
-import com.briup.apps.ej.service.ICustomerService;
+
+import com.briup.apps.ej.bean.Address;
+import com.briup.apps.ej.service.IAdressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/address")
+public class AddressController {
+
     @Autowired
-    private ICustomerService customerService;
+    private IAdressService addressService;
 
     @GetMapping("findAll")
     public Message findAll(){
-        List<Customer> list = customerService.findAll();
-        return MessageUtil.success("success",list);
+        List<Address> list=addressService.findAll();
+        return MessageUtil.success("success", list);
     }
 
 

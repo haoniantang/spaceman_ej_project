@@ -19,4 +19,6 @@ public class CustomerServiceImpl implements ICustomerService {
         CustomerExample example = new CustomerExample();
         return customerMapper.selectByExample(example);
     }
+
+
 }
