@@ -14,4 +14,6 @@ public interface IWaiterService {
     void saveOrUpdate(Waiter customer) throws Exception ;
 
     void deleteById(long id) throws Exception ;
+
+    void recoverById(long id) throws Exception;
 }

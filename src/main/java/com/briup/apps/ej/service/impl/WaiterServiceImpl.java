@@ -60,9 +60,21 @@ public class WaiterServiceImpl implements IWaiterService {
     public void deleteById(long id) throws Exception {
         Waiter waiter = waiterMapper.selectByPrimaryKey(id);
         if(waiter == null){
-            throw new Exception("要删除的顾客不存在");
+            throw new Exception("要删除的服务员不存在");
         } else {
-            waiterMapper.deleteByPrimaryKey(id);
+            waiter.setStatus("0");
+            waiterMapper.updateByPrimaryKey(waiter);
+        }
+    }
+
+    @Override
+    public void recoverById(long id) throws Exception {
+        Waiter waiter = waiterMapper.selectByPrimaryKey(id);
+        if(waiter == null){
+            throw new Exception("要删除的服务员不存在");
+        } else {
+            waiter.setStatus("1");
+            waiterMapper.updateByPrimaryKey(waiter);
         }
     }
 }
