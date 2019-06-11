@@ -4,6 +4,7 @@ import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 public interface OrderMapper {
     /**
