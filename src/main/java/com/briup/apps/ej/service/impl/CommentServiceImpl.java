@@ -20,10 +20,27 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
-    public List<Comment> findCommentById(Long order_id) {
+    public List<Comment> findCommentByOrderId(Long order_id) {
         CommentExample commentExample=new CommentExample();
         CommentExample.Criteria criteria=commentExample.createCriteria();
         criteria.andOrderIdEqualTo(order_id);
         return commentMapper.selectByExample(commentExample);
+    }
+
+    @Override
+    public void deleteCommentById(Long id)throws Exception {
+        Comment comment=commentMapper.selectByPrimaryKey(id);
+        if(comment == null){
+            throw new Exception("要删除的用户不存在");
+        } else {
+            commentMapper.deleteByPrimaryKey(id);
+        }
+
+    }
+
+    @Override
+    public void insertComment(Comment comment) {
+//        Long order_id=;//先查询下该订单是否存在，存在
+        commentMapper.insertSelective(comment);
     }
 }

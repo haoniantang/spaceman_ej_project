@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
+    // 自动注入mapper实例
     @Resource
     private CustomerMapper customerMapper;
 
@@ -62,8 +63,23 @@ public class CustomerServiceImpl implements ICustomerService {
         if(customer == null){
             throw new Exception("要删除的顾客不存在");
         } else {
-
-            customerMapper.deleteByPrimaryKey(id);
+            //status为1表示正常状态，status设置为0则表示删除或封禁
+            customer.setStatus("0");
+            customerMapper.updateByPrimaryKey(customer);
         }
     }
+
+    @Override
+    public void recoverById(long id) throws Exception {
+        Customer customer = customerMapper.selectByPrimaryKey(id);
+        if(customer == null){
+            throw new Exception("要恢复的顾客不存在");
+        } else {
+            //status为1表示正常状态，status设置为0则表示删除或封禁
+            customer.setStatus("1");
+            customerMapper.updateByPrimaryKey(customer);
+        }
+    }
+
+
 }
