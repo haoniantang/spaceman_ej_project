@@ -19,4 +19,41 @@ public class AddressServiceImpl implements IAdressService {
         AddressExample example=new AddressExample();
         return addressMapper.selectByExample(example);
     }
+
+    @Override
+    public List<Address> findCustomerAllAddress(long id) {
+        AddressExample example=new AddressExample();
+        AddressExample.Criteria criteria=example.createCriteria();
+        criteria.andCustomerIdEqualTo(id);
+        return addressMapper.selectByExample(example);
+    }
+
+    @Override
+    public Address selectById(long id) {
+        return addressMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteById(long id) throws Exception{
+        Address address=addressMapper.selectByPrimaryKey(id);
+        if(address == null){
+            throw new Exception("要删除的地址不存在！");
+        }else{
+            addressMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
+    public void insert(Address address) throws Exception {
+        Address address1=addressMapper.selectByPrimaryKey(address.getId());
+        if(address1==null) {
+            addressMapper.insert(address);
+        }else{
+            throw new Exception("插入的Id已占用！");
+        }
+    }
+
+
+
+
 }
