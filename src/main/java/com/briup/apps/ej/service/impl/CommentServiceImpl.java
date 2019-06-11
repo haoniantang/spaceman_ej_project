@@ -37,4 +37,10 @@ public class CommentServiceImpl implements ICommentService {
         }
 
     }
+
+    @Override
+    public void insertComment(Comment comment) {
+//        Long order_id=;//先查询下该订单是否存在，存在
+        commentMapper.insertSelective(comment);
+    }
 }

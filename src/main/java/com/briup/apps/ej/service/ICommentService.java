@@ -13,6 +13,7 @@ public interface ICommentService {
     public List<Comment> findCommentById(Long order_id);
     //根据评论id删除该订单评论
     public void deleteCommentById(Long id)throws Exception;
-
+    //根据order_id添加对一个订单添加一个评论
+    public void insertComment(Comment comment);
 
 }
