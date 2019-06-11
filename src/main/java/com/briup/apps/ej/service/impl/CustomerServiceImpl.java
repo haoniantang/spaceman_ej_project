@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public void saveOrUpdate(Customer customer) throws Exception {
         if(customer.getId() == null){
             // 初始化属性
-            customer.setStatus("正常");
+            customer.setStatus("1");
             customerMapper.insert(customer);
         } else {
             customerMapper.updateByPrimaryKey(customer);
@@ -61,11 +61,25 @@ public class CustomerServiceImpl implements ICustomerService {
     public void deleteById(long id) throws Exception {
         Customer customer = customerMapper.selectByPrimaryKey(id);
         if(customer == null){
-            throw new Exception("要删除的用户不存在");
+            throw new Exception("要删除的顾客不存在");
         } else {
             //status为1表示正常状态，status设置为0则表示删除或封禁
             customer.setStatus("0");
             customerMapper.updateByPrimaryKey(customer);
         }
     }
+
+    @Override
+    public void recoverById(long id) throws Exception {
+        Customer customer = customerMapper.selectByPrimaryKey(id);
+        if(customer == null){
+            throw new Exception("要恢复的顾客不存在");
+        } else {
+            //status为1表示正常状态，status设置为0则表示删除或封禁
+            customer.setStatus("1");
+            customerMapper.updateByPrimaryKey(customer);
+        }
+    }
+
+
 }

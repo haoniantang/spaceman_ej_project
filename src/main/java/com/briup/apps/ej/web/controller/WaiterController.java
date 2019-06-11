@@ -27,7 +27,7 @@ public class WaiterController {
         return MessageUtil.success("success",list);
     }
 
-
+    @ApiOperation("查询所有服务员")
     @GetMapping("findAll")
     public Message findAll(){
         List<Waiter> list = waiterService.findAll();
@@ -43,7 +43,7 @@ public class WaiterController {
         return MessageUtil.success("success",waiter);
     }
 
-    @ApiOperation("保存或更新用户信息")
+    @ApiOperation("保存或更新服务员信息")
     @GetMapping("saveOrUpdate")
     public Message saveOrUpdate(Waiter waiter){
         try {
@@ -55,12 +55,24 @@ public class WaiterController {
         }
     }
 
-    @ApiOperation("通过id删除用户信息")
+    @ApiOperation("通过id删除服务员信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             waiterService.deleteById(id);
             return MessageUtil.success("删除成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
+
+    @ApiOperation("通过id恢复服务员信息")
+    @GetMapping("recoverById")
+    public Message recoverById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+        try {
+            waiterService.deleteById(id);
+            return MessageUtil.success("恢复成功!");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
