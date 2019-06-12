@@ -22,6 +22,9 @@ public interface IProductService {
     //根据商品id删除该商品
     public void deleteProductById(Long id)throws Exception;
 
+    //批量删除
+    public void deleteBathProduct(List<Long> id)throws Exception;
+
     //添加一种产品
     public void insertProduct(Product product);
 

@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -28,26 +30,26 @@ public class CustomerController {
     }
 
     @ApiOperation("查询所有顾客")
-    @GetMapping("findAll")
+    @GetMapping("findAllCustomer")
     public Message findAll(){
-        List<Customer> list = customerService.findAll();
+        List<Customer> list = customerService.findAllCustomer();
         return MessageUtil.success("success",list);
     }
 
     @ApiOperation("通过id查询")
-    @GetMapping("findById")
+    @GetMapping("findCustomerById")
     public Message findById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
-        Customer customer = customerService.findById(id);
+        Customer customer = customerService.findCustomerById(id);
         return MessageUtil.success("success",customer);
     }
 
     @ApiOperation("保存或更新顾客信息")
-    @GetMapping("saveOrUpdate")
+    @GetMapping("saveOrUpdateCustomer")
     public Message saveOrUpdate(Customer customer){
         try {
-            customerService.saveOrUpdate(customer);
+            customerService.saveOrUpdateCustomer(customer);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,10 +58,10 @@ public class CustomerController {
     }
 
     @ApiOperation("通过id删除顾客")
-    @GetMapping("deleteById")
+    @GetMapping("deleteCustomerById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            customerService.deleteById(id);
+            customerService.deleteCustomerById(id);
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,15 +70,22 @@ public class CustomerController {
     }
 
     @ApiOperation("通过id恢复顾客")
-    @GetMapping("recoverById")
+    @GetMapping("recoverCustomerById")
     public Message recoverById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            customerService.recoverById(id);
+            customerService.recoverCustomerById(id);
             return MessageUtil.success("恢复成功!");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+
+    @PostMapping("batchDeleteCustomer")
+    @ApiOperation("批量删除顾客信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        customerService.batchDeleteCustomer(ids);
+        return MessageUtil.success("批量删除成功");
     }
 
 }

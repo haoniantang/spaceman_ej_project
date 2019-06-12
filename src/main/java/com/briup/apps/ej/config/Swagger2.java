@@ -37,7 +37,7 @@ public class Swagger2 {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("ej家政")
-				.description("太空恶人，http://www.baidu.com")
+				.description("太空恶人为您服务：http://www.baidu.com")
 				.termsOfServiceUrl("http://www.baidu.com")
 				.version("1.0")
 				.build();

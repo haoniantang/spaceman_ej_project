@@ -5,6 +5,7 @@ import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,9 @@ public class ProductController {
 
     @ApiOperation("分页查询上线产品")
     @GetMapping("findProductByPage")
-    public Message findProductByPage(int currentPage){
+    public Message findProductByPage(
+            @ApiParam(value = "页号",required = true)
+            @RequestParam("currentPage")int currentPage){
         //设置页越界检查
         List<Product> pageProduct=productService.findProductByPage(currentPage);
         //判断结果是否为空
@@ -49,7 +52,9 @@ public class ProductController {
 
     @ApiOperation("根据分类id查询上线产品")
     @GetMapping("findProductByCategoryId")
-    public Message findProductByCategoryId(Long category_id){
+    public Message findProductByCategoryId(
+            @ApiParam(value = "分类id",required = true)
+            @RequestParam("category_id")Long category_id){
         //查询分类是否存在
 
         List<Product> categoryProduct=productService.findProductByCategoryId(category_id);
@@ -74,5 +79,33 @@ public class ProductController {
     public Message updateProduct(Product product){
         productService.updateProduct(product);
         return MessageUtil.success("更新产品成功！");
+    }
+
+    @ApiOperation("删除产品")
+    @GetMapping("deleteProductById")
+    public Message deleteProductById(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("id") Long id)throws Exception{
+        try{
+            productService.deleteProductById(id);
+            return MessageUtil.success("删除成功!");
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("删除失败:"+e.getMessage());
+        }
+    }
+
+    @ApiOperation("批量删除产品")
+    @GetMapping("deleteBathProduct")
+    public Message deleteBathProduct(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("idList") List<Long> idList){
+        try{
+            productService.deleteBathProduct(idList);
+            return MessageUtil.success("删除成功!");
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("删除失败:"+e.getMessage());
+        }
     }
 }
