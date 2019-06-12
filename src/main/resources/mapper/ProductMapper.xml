@@ -109,6 +109,9 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0">
+      limit #{startRow},#{pageSize}
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--
@@ -315,4 +318,22 @@
       category_id = #{categoryId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+<!--批量插入，采用replace into语句replace into 首先尝试插入数据到表中，
+1. 如果发现表中已经有此行数据（根据主键或者唯一索引判断）则先删除此行数据，然后插入新的数据。
+2. 否则，直接插入新数据。
+若采用map 则添加parameterType="java.util.Map"-->
+  <insert id="batchAdd">
+    insert  into ej_product(name,description,price,status,photo,category_id) values
+    <foreach collection="addList" index="index" item="item" separator=",">
+      (#{item.name},#{item.description},#{item.price},#{item.status},#{item.photo},#{item.category_id})
+    </foreach>
+  </insert>
+  <!--批量删除-->
+  <delete id="batchDelete">
+  delete from  ej_product where id in
+  <foreach collection="List" index="index" item="item"
+           open="(" separator="," close=")">
+        #{item}
+  </foreach>
+</delete>
 </mapper>

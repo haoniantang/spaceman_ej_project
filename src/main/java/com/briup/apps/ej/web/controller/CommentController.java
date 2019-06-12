@@ -22,12 +22,12 @@ public class CommentController {
     private ICommentService commentService;
 
     @ApiOperation("通过订单id查询评论")
-    @GetMapping("findCommentById")
-    public Message findCommentById(
+    @GetMapping("findCommentByOrderId")
+    public Message findCommentByOrderId(
             @ApiParam(value = "order_id",required = true)
             @RequestParam(value = "order_id") Long order_id){
         if(order_id != null){
-            List<Comment> findCommentList=commentService.findCommentById(order_id);
+            List<Comment> findCommentList=commentService.findCommentByOrderId(order_id);
             if(findCommentList.size()==0){
 
                 return MessageUtil.success("根据订单id查询订单评论成功,该订单暂无评论！");
@@ -35,7 +35,7 @@ public class CommentController {
                 return MessageUtil.success("根据订单id查询订单评论成功！",findCommentList);
             }
         }else{
-            return MessageUtil.error("查询失败:订单号获取失败！");
+            return MessageUtil.error("查询失败:订单号获取失败！请重试！");
         }
     }
 
@@ -43,7 +43,7 @@ public class CommentController {
     @GetMapping("deleteCommentById")
     public Message deleteCommentById(
             @ApiParam(value = "主键",required = true)
-            @RequestParam("id") long id)throws Exception{
+            @RequestParam("id") Long id)throws Exception{
         try{
             commentService.deleteCommentById(id);
             return MessageUtil.success("删除成功!");
