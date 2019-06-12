@@ -93,4 +93,6 @@ public interface ProductMapper {
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
     int updateByPrimaryKey(Product record);
+
+
 }
