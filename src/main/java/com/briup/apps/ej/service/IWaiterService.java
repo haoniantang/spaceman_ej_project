@@ -7,15 +7,15 @@ import java.util.List;
 public interface IWaiterService {
     List<Waiter> query(Waiter waiter);
 
-    List<Waiter> findAll();
+    List<Waiter> findAllWaiter();
 
-    Waiter findById(long id);
+    Waiter findWaiterById(long id);
 
-    void saveOrUpdate(Waiter customer) throws Exception ;
+    void saveOrUpdateWaiter(Waiter customer) throws Exception ;
 
-    void deleteById(long id) throws Exception ;
+    void deleteWaiterById(long id) throws Exception ;
 
-    void recoverById(long id) throws Exception;
+    void recoverWaiterById(long id) throws Exception;
 
-    void batchDelete(long[] ids) throws Exception;
+    void batchDeleteWaiter(long[] ids) throws Exception;
 }

@@ -7,16 +7,16 @@ import java.util.List;
 public interface ICustomerService {
     List<Customer> query(Customer customer);
 
-    List<Customer> findAll();
+    List<Customer> findAllCustomer();
 
-    Customer findById(long id);
+    Customer findCustomerById(long id);
 
-    void saveOrUpdate(Customer customer) throws Exception ;
+    void saveOrUpdateCustomer(Customer customer) throws Exception ;
 
-    void deleteById(long id) throws Exception ;
+    void deleteCustomerById(long id) throws Exception ;
 
-    void recoverById(long id) throws  Exception ;
+    void recoverCustomerById(long id) throws  Exception ;
 
-    void batchDelete(long[] ids) throws Exception;
+    void batchDeleteCustomer(long[] ids) throws Exception;
 
 }

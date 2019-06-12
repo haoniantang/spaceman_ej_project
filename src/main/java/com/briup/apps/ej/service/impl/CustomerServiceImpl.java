@@ -37,21 +37,21 @@ public class CustomerServiceImpl implements ICustomerService {
 
     //查询所有顾客信息
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> findAllCustomer() {
         CustomerExample example = new CustomerExample();
         return customerMapper.selectByExample(example);
     }
 
     //根据id查询顾客信息
     @Override
-    public Customer findById(long id) {
+    public Customer findCustomerById(long id) {
         // 调用mapper层代码完成查询操作
         return customerMapper.selectByPrimaryKey(id);
     }
 
     //插入或更新顾客信息
     @Override
-    public void saveOrUpdate(Customer customer) throws Exception {
+    public void saveOrUpdateCustomer(Customer customer) throws Exception {
         if(customer.getId() == null){
             // 初始化属性
             customer.setStatus("1");
@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     //根据id删除顾客，设置顾客的status为0
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteCustomerById(long id) throws Exception {
         Customer customer = customerMapper.selectByPrimaryKey(id);
         if(customer == null){
             throw new Exception("要删除的顾客不存在");
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     //恢复顾客的使用权限
     @Override
-    public void recoverById(long id) throws Exception {
+    public void recoverCustomerById(long id) throws Exception {
         Customer customer = customerMapper.selectByPrimaryKey(id);
         if(customer == null){
             throw new Exception("要恢复的顾客不存在");
@@ -89,7 +89,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     //批量删除顾客，即设置使用权不可用
     @Override
-    public void batchDelete(long[] ids) throws Exception {
+    public void batchDeleteCustomer(long[] ids) throws Exception {
         for(long id :ids){
             Customer customer = customerMapper.selectByPrimaryKey(id);
             //设置customer的status为0，表示该顾客处于不可用状态

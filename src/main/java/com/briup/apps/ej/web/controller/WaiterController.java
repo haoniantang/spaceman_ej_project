@@ -26,26 +26,26 @@ public class WaiterController {
     }
 
     @ApiOperation("查询所有服务员")
-    @GetMapping("findAll")
+    @GetMapping("findAllWaiter")
     public Message findAll(){
-        List<Waiter> list = waiterService.findAll();
+        List<Waiter> list = waiterService.findAllWaiter();
         return MessageUtil.success("success",list);
     }
 
     @ApiOperation("通过id查询")
-    @GetMapping("findById")
+    @GetMapping("findWaiterById")
     public Message findById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
-        Waiter waiter = waiterService.findById(id);
+        Waiter waiter = waiterService.findWaiterById(id);
         return MessageUtil.success("success",waiter);
     }
 
     @ApiOperation("保存或更新服务员信息")
-    @GetMapping("saveOrUpdate")
+    @GetMapping("saveOrUpdateWaiter")
     public Message saveOrUpdate(Waiter waiter){
         try {
-            waiterService.saveOrUpdate(waiter);
+            waiterService.saveOrUpdateWaiter(waiter);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,10 +54,10 @@ public class WaiterController {
     }
 
     @ApiOperation("通过id删除服务员信息")
-    @GetMapping("deleteById")
+    @GetMapping("deleteWaiterById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            waiterService.deleteById(id);
+            waiterService.deleteWaiterById(id);
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,10 +66,10 @@ public class WaiterController {
     }
 
     @ApiOperation("通过id恢复服务员信息")
-    @GetMapping("recoverById")
+    @GetMapping("recoverWaiterById")
     public Message recoverById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            waiterService.deleteById(id);
+            waiterService.recoverWaiterById(id);
             return MessageUtil.success("恢复成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,10 +77,10 @@ public class WaiterController {
         }
     }
 
-    @PostMapping("batchDelete")
+    @PostMapping("batchDeleteWaiter")
     @ApiOperation("批量删除服务员信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
-        waiterService.batchDelete(ids);
+        waiterService.batchDeleteWaiter(ids);
         return MessageUtil.success("批量删除成功");
     }
 
