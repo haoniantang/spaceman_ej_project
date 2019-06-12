@@ -76,13 +76,8 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void batchDelete(long[] ids) throws Exception {
-         for(int i=0;i<ids.length;i++){
-             Order order = orderMapper.selectByPrimaryKey(ids[i]);
-             if(order == null){
-                 throw new Exception("要删除的订单号为"+ids[i]+"的订单不存在");
-             } else {
-                 orderMapper.deleteByPrimaryKey(ids[i]);
-             }
+         for(long id : ids){
+                 orderMapper.deleteByPrimaryKey(id);
          }
     }
 }
