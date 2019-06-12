@@ -7,12 +7,10 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -74,6 +72,20 @@ public class ProductController {
         return MessageUtil.success("添加产品成功！");
     }
 
+    @ApiOperation("批量添加产品")
+    @PostMapping("insertBathProduct")
+    public Message insertBathProduct(
+            @ApiParam(value = "批量添加产品",required = true)
+            @RequestBody List<Product> products) {
+        try {
+            productService.insertBathProduct(products);
+            return MessageUtil.success("添加产品成功！");
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("添加产品失败！");
+        }
+    }
+
     @ApiOperation("更新产品")
     @GetMapping("updateProduct")
     public Message updateProduct(Product product){
@@ -99,7 +111,7 @@ public class ProductController {
     @GetMapping("deleteBathProduct")
     public Message deleteBathProduct(
             @ApiParam(value = "主键",required = true)
-            @RequestParam("idList") List<Long> idList){
+            @RequestParam(value = "idList") List<Long> idList){
         try{
             productService.deleteBathProduct(idList);
             return MessageUtil.success("删除成功!");

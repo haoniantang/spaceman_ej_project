@@ -94,5 +94,6 @@ public interface ProductMapper {
      */
     int updateByPrimaryKey(Product record);
 
+    void batchInsert(List<Product> products);
 
 }

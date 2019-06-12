@@ -72,11 +72,17 @@ public class ProductServiceImpl implements IProductService {
         ProductExample.Criteria criteria=productExample.createCriteria();
         criteria.andIdIn(idList);
         productMapper.deleteByExample(productExample);
+
     }
 
     @Override
     public void insertProduct(Product product) {
         productMapper.insertSelective(product);
+    }
+
+    @Override
+    public void insertBathProduct(List<Product> products){
+        productMapper.batchInsert(products);
     }
 
     @Override

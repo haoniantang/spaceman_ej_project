@@ -28,6 +28,9 @@ public interface IProductService {
     //添加一种产品
     public void insertProduct(Product product);
 
+    //批量添加产品
+    public  void insertBathProduct(List<Product> products);
+
     //修改商品的信息
     public void updateProduct(Product product);
 
