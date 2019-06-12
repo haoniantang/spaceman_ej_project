@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -72,6 +73,7 @@ public class ProductServiceImpl implements IProductService {
         ProductExample.Criteria criteria=productExample.createCriteria();
         criteria.andIdIn(idList);
         productMapper.deleteByExample(productExample);
+
     }
 
     @Override
@@ -80,7 +82,26 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public void insertBathProduct(List<Product> products){
+        productMapper.batchInsert(products);
+    }
+
+    @Override
     public void updateProduct(Product product) {
         productMapper.updateByPrimaryKeySelective(product);
+    }
+
+    @Override
+    public void UpdateBatchProductStatus(Map<String,Object> map)throws Exception{
+        ProductExample productExample=new ProductExample();
+        ProductExample.Criteria criteria=productExample.createCriteria();
+        criteria.andIdIn((List<Long>) map.get("idList"));
+        int num=((List<Long>) map.get("idList")).size();
+        int snum=productMapper.selectByExample(productExample).size();
+        if(num==snum) {
+            productMapper.batchUpdateStatusWithMap(map);
+        }else {
+            throw new Exception("非法的修改，修改的产品有不存在！");
+        }
     }
 }

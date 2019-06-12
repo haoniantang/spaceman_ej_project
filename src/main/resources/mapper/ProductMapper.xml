@@ -322,18 +322,19 @@
 1. 如果发现表中已经有此行数据（根据主键或者唯一索引判断）则先删除此行数据，然后插入新的数据。
 2. 否则，直接插入新数据。
 若采用map 则添加parameterType="java.util.Map"-->
-  <insert id="batchAdd">
-    insert  into ej_product(name,description,price,status,photo,category_id) values
-    <foreach collection="addList" index="index" item="item" separator=",">
-      (#{item.name},#{item.description},#{item.price},#{item.status},#{item.photo},#{item.category_id})
+  <insert id="batchInsert">
+    insert  into ej_product(name,description,price,status,photo,category_Id) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.name},#{item.description},#{item.price},"1",#{item.photo},#{item.categoryId,jdbcType=BIGINT})
     </foreach>
   </insert>
-  <!--批量删除-->
-  <delete id="batchDelete">
-  delete from  ej_product where id in
-  <foreach collection="List" index="index" item="item"
-           open="(" separator="," close=")">
+  <!--批量更新-->
+  <update id="batchUpdateStatusWithMap" parameterType="java.util.Map">
+    UPDATE ej_product
+    SET status=#{status}
+    WHERE id IN
+    <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
         #{item}
-  </foreach>
-</delete>
+    </foreach>
+  </update>
 </mapper>

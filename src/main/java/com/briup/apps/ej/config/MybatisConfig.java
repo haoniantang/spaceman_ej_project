@@ -7,4 +7,5 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.briup.apps.ej.dao")
 public class MybatisConfig {
 
+
 }
