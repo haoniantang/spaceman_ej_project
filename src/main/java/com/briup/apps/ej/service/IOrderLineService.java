@@ -15,4 +15,6 @@ public interface IOrderLineService {
     void saveOrUpdate(OrderLine orderLine) throws Exception ;
 
     void deleteById(long id) throws Exception ;
+
+    void batchDelete(long ids[]) throws Exception ;
 }
