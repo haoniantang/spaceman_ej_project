@@ -71,10 +71,21 @@ public class WaiterServiceImpl implements IWaiterService {
     public void recoverById(long id) throws Exception {
         Waiter waiter = waiterMapper.selectByPrimaryKey(id);
         if(waiter == null){
-            throw new Exception("要删除的服务员不存在");
+            throw new Exception("要恢复的服务员不存在");
         } else {
             waiter.setStatus("1");
             waiterMapper.updateByPrimaryKey(waiter);
+        }
+    }
+
+    //批量删除服务员
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            Waiter waiter = waiterMapper.selectByPrimaryKey(id);
+            waiter.setStatus("0");
+            waiterMapper.updateByPrimaryKey(waiter);
+            //waiterMapper.deleteByPrimaryKey(id);
         }
     }
 }

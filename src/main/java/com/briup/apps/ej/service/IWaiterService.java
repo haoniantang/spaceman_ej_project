@@ -16,4 +16,6 @@ public interface IWaiterService {
     void deleteById(long id) throws Exception ;
 
     void recoverById(long id) throws Exception;
+
+    void batchDelete(long[] ids) throws Exception;
 }

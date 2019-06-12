@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -77,6 +79,13 @@ public class CustomerController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+
+    @PostMapping("batchDelete")
+    @ApiOperation("批量删除顾客信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        customerService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 
 }

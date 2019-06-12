@@ -7,11 +7,9 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -77,6 +75,13 @@ public class WaiterController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+
+    @PostMapping("batchDelete")
+    @ApiOperation("批量删除服务员信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        waiterService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 
 }
