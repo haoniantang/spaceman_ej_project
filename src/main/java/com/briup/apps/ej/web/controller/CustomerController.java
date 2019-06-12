@@ -44,7 +44,9 @@ public class CustomerController {
     }
 
     @ApiOperation("保存或更新顾客信息")
-    @GetMapping("saveOrUpdate")
+
+    //@GetMapping("saveOrUpdate")
+    @RequestMapping("saveOrUpdate")
     public Message saveOrUpdate(Customer customer){
         try {
             customerService.saveOrUpdate(customer);
