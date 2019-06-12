@@ -43,7 +43,7 @@ public class CommentController {
     @GetMapping("deleteCommentById")
     public Message deleteCommentById(
             @ApiParam(value = "主键",required = true)
-            @RequestParam("id") long id)throws Exception{
+            @RequestParam("id") Long id)throws Exception{
         try{
             commentService.deleteCommentById(id);
             return MessageUtil.success("删除成功!");

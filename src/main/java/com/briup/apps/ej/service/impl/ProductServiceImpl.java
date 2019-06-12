@@ -67,6 +67,14 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public void deleteBathProduct(List<Long> idList) throws Exception {
+        ProductExample productExample=new ProductExample();
+        ProductExample.Criteria criteria=productExample.createCriteria();
+        criteria.andIdIn(idList);
+        productMapper.deleteByExample(productExample);
+    }
+
+    @Override
     public void insertProduct(Product product) {
         productMapper.insertSelective(product);
     }
