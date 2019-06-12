@@ -90,6 +90,8 @@ public class WaiterServiceImpl implements IWaiterService {
                 waiterMapper.updateByPrimaryKey(waiter);
             }
 
+
+            //test
         }
     }
 }
