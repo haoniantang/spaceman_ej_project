@@ -328,12 +328,13 @@
       (#{item.name},#{item.description},#{item.price},"1",#{item.photo},#{item.categoryId,jdbcType=BIGINT})
     </foreach>
   </insert>
-  <!--批量删除-->
-  <delete id="batchDelete">
-  delete from  ej_product where id in
-  <foreach collection="List" index="index" item="item"
-           open="(" separator="," close=")">
+  <!--批量更新-->
+  <update id="batchUpdateStatusWithMap" parameterType="java.util.Map">
+    UPDATE ej_product
+    SET status=#{status}
+    WHERE id IN
+    <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
         #{item}
-  </foreach>
-</delete>
+    </foreach>
+  </update>
 </mapper>
