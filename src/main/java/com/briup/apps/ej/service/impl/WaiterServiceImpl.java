@@ -89,9 +89,6 @@ public class WaiterServiceImpl implements IWaiterService {
                 waiter.setStatus("0");
                 waiterMapper.updateByPrimaryKey(waiter);
             }
-
-
-            //test
         }
     }
 }
