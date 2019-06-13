@@ -3,6 +3,8 @@ package com.briup.apps.ej.dao;
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.ProductExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ProductMapper {
@@ -94,5 +96,7 @@ public interface ProductMapper {
      */
     int updateByPrimaryKey(Product record);
 
+    void batchInsert(List<Product> products);
 
+    void  batchUpdateStatusWithMap(Map<String,Object> map);
 }

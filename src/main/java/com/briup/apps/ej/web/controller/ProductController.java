@@ -7,13 +7,11 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Member;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -74,11 +72,47 @@ public class ProductController {
         return MessageUtil.success("添加产品成功！");
     }
 
+    @ApiOperation("批量添加产品")
+    @PostMapping("insertBathProduct")
+    public Message insertBathProduct(
+            @ApiParam(value = "批量添加产品",required = true)
+            @RequestBody List<Product> products) {
+        try {
+            productService.insertBathProduct(products);
+            return MessageUtil.success("添加产品成功！");
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("添加产品失败！"+e.getMessage());
+        }
+    }
+
     @ApiOperation("更新产品")
     @GetMapping("updateProduct")
     public Message updateProduct(Product product){
         productService.updateProduct(product);
         return MessageUtil.success("更新产品成功！");
+    }
+
+    @ApiOperation("批量更新产品")
+    @GetMapping("UpdateBatchProductStatus")
+    public Message UpdateBatchProductStatus(
+            @ApiParam(value = "批量更新产品",required = true)
+            @RequestParam("status") String status,
+            @RequestParam(value = "idList")List<Long> idList){
+        Map<String,Object> map = new HashMap<String,Object>();
+        if(status.equals("0")||status.equals("1")) {
+            try {
+                map.put("idList", idList);
+                map.put("status", status);
+                productService.UpdateBatchProductStatus(map);
+                return MessageUtil.success("更新产品成功！");
+            }catch (Exception e){
+                e.getStackTrace();
+                return MessageUtil.error("更新产品失败！"+e.getMessage());
+            }
+        }else {
+            return  MessageUtil.error("警告传值错误！");
+        }
     }
 
     @ApiOperation("删除产品")
@@ -99,7 +133,7 @@ public class ProductController {
     @GetMapping("deleteBathProduct")
     public Message deleteBathProduct(
             @ApiParam(value = "主键",required = true)
-            @RequestParam("idList") List<Long> idList){
+            @RequestParam(value = "idList") List<Long> idList){
         try{
             productService.deleteBathProduct(idList);
             return MessageUtil.success("删除成功!");

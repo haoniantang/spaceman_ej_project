@@ -4,6 +4,7 @@ package com.briup.apps.ej.service;
 import com.briup.apps.ej.bean.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IProductService {
 
@@ -28,8 +29,14 @@ public interface IProductService {
     //添加一种产品
     public void insertProduct(Product product);
 
+    //批量添加产品
+    public  void insertBathProduct(List<Product> products);
+
     //修改商品的信息
     public void updateProduct(Product product);
+
+    //批量修改商品状态
+    public void UpdateBatchProductStatus(Map<String,Object> map) throws Exception;
 
     //如果需要可增加返回商品信息及商品分类的数据集合
 }
