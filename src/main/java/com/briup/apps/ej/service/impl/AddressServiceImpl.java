@@ -63,5 +63,15 @@ public class AddressServiceImpl implements IAddressService {
         }
     }
 
+    @Override
+    public void saveOrUpdateAddress(Address address) throws Exception {
+        Address address1=addressMapper.selectByPrimaryKey(address.getId());
+        if(address1==null){
+            addressMapper.insert(address);
+        }else {
+            addressMapper.updateByPrimaryKeySelective(address);
+        }
+    }
+
 
 }
