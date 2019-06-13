@@ -81,9 +81,9 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("batchDeleteCustomer")
     @ApiOperation("批量删除顾客信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+    @PostMapping("batchDeleteCustomer")
+    public Message batchDelete( long[] ids) throws Exception{
         customerService.batchDeleteCustomer(ids);
         return MessageUtil.success("批量删除成功");
     }
