@@ -4,14 +4,17 @@ import com.briup.apps.ej.bean.Waiter;
 import com.briup.apps.ej.service.IWaiterService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Api(description = "服务员管理相关接口")
 @RestController
 @RequestMapping("/waiter")
 public class WaiterController {
@@ -43,7 +46,7 @@ public class WaiterController {
 
     @ApiOperation("保存或更新服务员信息")
     @GetMapping("saveOrUpdateWaiter")
-    public Message saveOrUpdateWaiter(Waiter waiter){
+    public Message saveOrUpdateWaiter(@Valid @ModelAttribute Waiter waiter){
         try {
             waiterService.saveOrUpdateWaiter(waiter);
             return MessageUtil.success("保存成功!");
