@@ -1,5 +1,9 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
 public class Order {
     /**
      *
@@ -26,6 +30,8 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "价格",required = true)
+    @NotBlank(message="价格不能为空")
     private Double total;
 
     /**
@@ -35,6 +41,8 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "顾客",required = true)
+    @NotBlank(message="顾客id不能为空")
     private Long customerId;
 
     /**

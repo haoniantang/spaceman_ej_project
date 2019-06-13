@@ -2,21 +2,22 @@ package com.briup.apps.ej.web.controller;
 
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Api(description = "订单管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/order")
@@ -38,16 +39,16 @@ public class OrderController {
         return MessageUtil.success("success",order);
     }
 
-    @ApiOperation("模糊查询订单信息")
+    @ApiOperation("查询订单信息，并且订单级联关键的属性")
     @GetMapping("query")
-    public Message query(Order order){
-        List<Order> list = orderService.query(order);
+    public Message query(Long customerId,Long waiterId){
+        List<OrderExtend> list = orderService.query(customerId,waiterId);
         return MessageUtil.success("success",list);
     }
 
     @ApiOperation("保存或更新订单信息")
     @GetMapping("saveOrUpdateOrder")
-    public Message saveOrUpdateOrder(Order order){
+    public Message saveOrUpdateOrder(@Valid @ModelAttribute Order order){
         try {
             orderService.saveOrUpdateOrder(order);
             return MessageUtil.success("保存成功!");
