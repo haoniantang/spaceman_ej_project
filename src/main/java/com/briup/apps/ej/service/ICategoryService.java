@@ -5,13 +5,13 @@ import com.briup.apps.ej.bean.Category;
 import java.util.List;
 
 public interface ICategoryService {
-    List<Category> findAll();
+    List<Category> findAllCategory();
 
-    Category findById(long id);
+    Category findCategoryById(long id);
 
-    void deleteById(long id) throws Exception;
+    void deleteCategoryById(long id) throws Exception;
 
-    void insert(Category category)throws Exception;
+    void insertCategory(Category category)throws Exception;
 
-    void updatePrimaryKey(Category category)throws Exception;
+    void updateCategory(Category category)throws Exception;
 }

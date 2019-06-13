@@ -16,14 +16,14 @@ public class OrderLineServiceImpl implements IOrderLineService {
 
 
     @Override
-    public List<OrderLine> findAll() {
+    public List<OrderLine> findAllOrderLine() {
         //创建空模块
         OrderLineExample example = new OrderLineExample();
         return orderLineMapper.selectByExample(example);
     }
 
     @Override
-    public OrderLine findById(long id) {
+    public OrderLine findOrderLineById(long id) {
         return orderLineMapper.selectByPrimaryKey(id);
     }
 
@@ -50,7 +50,7 @@ public class OrderLineServiceImpl implements IOrderLineService {
     }
 
     @Override
-    public void saveOrUpdate(OrderLine orderLine) throws Exception {
+    public void saveOrUpdateOrderLine(OrderLine orderLine) throws Exception {
         if(orderLine.getId() == null){
             // 初始化属性
             orderLineMapper.insert(orderLine);
@@ -60,17 +60,17 @@ public class OrderLineServiceImpl implements IOrderLineService {
     }
 
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteOrderLineById(long id) throws Exception {
         OrderLine orderLine = orderLineMapper.selectByPrimaryKey(id);
         if(orderLine == null){
-            throw new Exception("要删除的订单不存在");
+            throw new Exception("要删除的订单行不存在");
         } else {
             orderLineMapper.deleteByPrimaryKey(id);
         }
     }
 
     @Override
-    public void batchDelete(long[] ids) throws Exception {
+    public void batchDeleteOrderLine(long[] ids) throws Exception {
         for(long id : ids){
             orderLineMapper.deleteByPrimaryKey(id);
         }

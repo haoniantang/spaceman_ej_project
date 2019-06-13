@@ -6,15 +6,15 @@ import com.briup.apps.ej.bean.OrderLine;
 import java.util.List;
 
 public interface IOrderLineService {
-    List<OrderLine> findAll();
+    List<OrderLine> findAllOrderLine();
 
     List<OrderLine> query(OrderLine orderLine);
 
-    OrderLine findById(long id);
+    OrderLine findOrderLineById(long id);
 
-    void saveOrUpdate(OrderLine orderLine) throws Exception ;
+    void saveOrUpdateOrderLine(OrderLine orderLine) throws Exception ;
 
-    void deleteById(long id) throws Exception ;
+    void deleteOrderLineById(long id) throws Exception ;
 
-    void batchDelete(long ids[]) throws Exception ;
+    void batchDeleteOrderLine(long ids[]) throws Exception ;
 }

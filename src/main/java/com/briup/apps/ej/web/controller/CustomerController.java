@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -29,16 +28,16 @@ public class CustomerController {
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("查询所有顾客")
+    @ApiOperation("查询所有顾客信息")
     @GetMapping("findAllCustomer")
-    public Message findAll(){
+    public Message findAllCustomer(){
         List<Customer> list = customerService.findAllCustomer();
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("通过id查询")
+    @ApiOperation("通过id查询顾客信息")
     @GetMapping("findCustomerById")
-    public Message findById(
+    public Message findCustomerById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
         Customer customer = customerService.findCustomerById(id);
@@ -47,7 +46,7 @@ public class CustomerController {
 
     @ApiOperation("保存或更新顾客信息")
     @PostMapping("saveOrUpdateCustomer")
-    public Message saveOrUpdate(Customer customer){
+    public Message saveOrUpdateCustomer(Customer customer){
         try {
             customerService.saveOrUpdateCustomer(customer);
             return MessageUtil.success("保存成功!");
@@ -57,9 +56,9 @@ public class CustomerController {
         }
     }
 
-    @ApiOperation("通过id删除顾客")
+    @ApiOperation("通过id删除顾客信息")
     @GetMapping("deleteCustomerById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message deleteCustomerById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             customerService.deleteCustomerById(id);
             return MessageUtil.success("删除成功!");
@@ -69,9 +68,9 @@ public class CustomerController {
         }
     }
 
-    @ApiOperation("通过id恢复顾客")
+    @ApiOperation("通过id恢复顾客信息")
     @GetMapping("recoverCustomerById")
-    public Message recoverById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message recoverCustomerById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             customerService.recoverCustomerById(id);
             return MessageUtil.success("恢复成功!");
@@ -83,7 +82,7 @@ public class CustomerController {
 
     @ApiOperation("批量删除顾客信息")
     @PostMapping("batchDeleteCustomer")
-    public Message batchDelete( long[] ids) throws Exception{
+    public Message batchDeleteCustomer( long[] ids) throws Exception{
         customerService.batchDeleteCustomer(ids);
         return MessageUtil.success("批量删除成功");
     }

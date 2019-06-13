@@ -2,9 +2,10 @@ package com.briup.apps.ej.web.controller;
 
 
 import com.briup.apps.ej.bean.Address;
-import com.briup.apps.ej.service.IAdressService;
+import com.briup.apps.ej.service.IAddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,20 +18,22 @@ import java.util.List;
 public class AddressController {
 
     @Autowired
-    private IAdressService addressService;
+    private IAddressService addressService;
 
 
     //查询所有的地址，返回是所有的地址
     @GetMapping("findAllAddress")
-    public Message findAll(){
-        List<Address> list=addressService.findAll();
+    @ApiOperation("查询所有地址信息")
+    public Message findAllAddress(){
+        List<Address> list=addressService.findAllAddress();
         return MessageUtil.success("success", list);
     }
 
     //根据顾客的id查询顾客的地址，返回是顾客所有的地址
-    @GetMapping("findCustomerAllAdress")
-    public Message findCuostomerAllAdress(long id){
-        List<Address> list=addressService.findCustomerAllAddress(id);
+    @ApiOperation("通过顾客id查询该顾客的所有地址信息")
+    @GetMapping("findAdressByCuostomerId")
+    public Message findAllAdressByCuostomerId(long id){
+        List<Address> list=addressService.findAllAddressByCustomerId(id);
         if(list.isEmpty()){
             return MessageUtil.success("该用户没有地址，添加地址");
         }else{
@@ -38,16 +41,18 @@ public class AddressController {
         }
     }
     //根据表的id查询地址，返回是该id的地址
-    @GetMapping("selectByAddressId")
-    public Message selectById(long id){
-        Address address=addressService.selectById(id);
+    @ApiOperation("通过id查询地址信息")
+    @GetMapping("selectAddressById")
+    public Message selectAddressById(long id){
+        Address address=addressService.selectAddressById(id);
         return MessageUtil.success("success",address);
     }
     //根据表的id删除地址
-    @GetMapping("deleteByAddressId")
-    public Message deleteById(long id){
+    @ApiOperation("通过id删除地址信息")
+    @GetMapping("deleteAddressById")
+    public Message deleteAddressById(long id){
         try{
-            addressService.deleteById(id);
+            addressService.deleteAddressById(id);
             return MessageUtil.success("删除地址成功！");
         }catch(Exception e){
             e.printStackTrace();
@@ -55,10 +60,11 @@ public class AddressController {
         }
     }
     //增加新的地址
+    @ApiOperation("添加新的地址信息")
     @GetMapping("insertAddress")
-    public Message insert(Address address){
+    public Message insertAddress(Address address){
         try{
-            addressService.insert(address);
+            addressService.insertAddress(address);
             return MessageUtil.success("增加新的地址成功！");
         }catch(Exception e){
             e.printStackTrace();
@@ -67,10 +73,11 @@ public class AddressController {
     }
 
     //根据地址Id更新地址
-    @GetMapping("updateByAdddressId")
+    @ApiOperation("通过id更新地址信息")
+    @GetMapping("updateAdddress")
     public Message updateById(Address address){
         try{
-            addressService.updateByPrimaryKey(address);
+            addressService.updateAddress(address);
             return MessageUtil.success("更新地址成功！");
         }catch(Exception e){
             e.printStackTrace();

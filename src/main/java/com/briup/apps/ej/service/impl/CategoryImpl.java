@@ -16,18 +16,18 @@ public class CategoryImpl implements ICategoryService {
     private CategoryMapper categoryMapper;
 
     @Override
-    public List<Category> findAll() {
+    public List<Category> findAllCategory() {
         CategoryExample example=new CategoryExample();
         return categoryMapper.selectByExample(example);
     }
 
     @Override
-    public Category findById(long id) {
+    public Category findCategoryById(long id) {
         return categoryMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteCategoryById(long id) throws Exception {
         Category category=categoryMapper.selectByPrimaryKey(id);
         if(category==null){
             throw new Exception("删除的分类不存在！");
@@ -37,7 +37,7 @@ public class CategoryImpl implements ICategoryService {
     }
 
     @Override
-    public void insert(Category category) throws Exception {
+    public void insertCategory(Category category) throws Exception {
         Category category1=categoryMapper.selectByPrimaryKey(category.getId());
         if(category1==null){
             categoryMapper.insert(category);
@@ -49,7 +49,7 @@ public class CategoryImpl implements ICategoryService {
 
 
     @Override
-    public void updatePrimaryKey(Category category) throws Exception {
+    public void updateCategory(Category category) throws Exception {
         Category category1=categoryMapper.selectByPrimaryKey(category.getId());
         if(category1==null){
             throw new Exception("更新的Id分类不存在！");

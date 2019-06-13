@@ -8,13 +8,16 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -22,16 +25,16 @@ public class OrderController {
     private IOrderService orderService;
 
     @ApiOperation("查询所有订单信息")
-    @GetMapping("findAll")
-    public Message findAll(){
-        List<Order> list = orderService.findAll();
+    @GetMapping("findAllOrder")
+    public Message findAllOrder(){
+        List<Order> list = orderService.findAllOrder();
         return MessageUtil.success("success",list);
     }
 
     @ApiOperation("通过id查询订单信息")
-    @GetMapping("findById")
-    public Message findById(@ApiParam(required = true) @RequestParam(value = "id") long id){
-        Order order = orderService.findById(id);
+    @GetMapping("findOrderById")
+    public Message findOrderById(@ApiParam(required = true) @RequestParam(value = "id") @NotNull long id){
+        Order order = orderService.findOrderById(id);
         return MessageUtil.success("success",order);
     }
 
@@ -43,10 +46,10 @@ public class OrderController {
     }
 
     @ApiOperation("保存或更新订单信息")
-    @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Order order){
+    @GetMapping("saveOrUpdateOrder")
+    public Message saveOrUpdateOrder(Order order){
         try {
-            orderService.saveOrUpdate(order);
+            orderService.saveOrUpdateOrder(order);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,10 +58,10 @@ public class OrderController {
     }
 
     @ApiOperation("通过id删除订单信息")
-    @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    @GetMapping("deleteOrderById")
+    public Message deleteOrderById(@ApiParam(value = "主键",required = true) @RequestParam("id") @NotNull long id){
         try {
-            orderService.deleteById(id);
+            orderService.deleteOrderById(id);
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();

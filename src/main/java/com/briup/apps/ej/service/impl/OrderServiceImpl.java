@@ -16,14 +16,14 @@ public class OrderServiceImpl implements IOrderService {
 
 
     @Override
-    public List<Order> findAll() {
+    public List<Order> findAllOrder() {
         //创建空模块
         OrderExample example = new OrderExample();
         return orderMapper.selectByExample(example);
     }
 
     @Override
-    public Order findById(long id) {
+    public Order findOrderById(long id) {
         return orderMapper.selectByPrimaryKey(id);
     }
 
@@ -55,7 +55,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void saveOrUpdate(Order order) throws Exception {
+    public void saveOrUpdateOrder(Order order) throws Exception {
         if(order.getId() == null){
             // 初始化属性
             orderMapper.insert(order);
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void deleteById(long id) throws Exception {
+    public void deleteOrderById(long id) throws Exception {
         Order order = orderMapper.selectByPrimaryKey(id);
         if(order == null){
             throw new Exception("要删除的订单不存在");
@@ -75,7 +75,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void batchDelete(long[] ids) throws Exception {
+    public void batchDeleteOrder(long[] ids) throws Exception {
          for(long id : ids){
                  orderMapper.deleteByPrimaryKey(id);
          }

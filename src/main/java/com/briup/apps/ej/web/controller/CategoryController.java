@@ -4,6 +4,7 @@ import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.service.ICategoryService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,23 +20,26 @@ public class CategoryController {
     private ICategoryService  categoryService;
 
     //返回所有的分类信息
+    @ApiOperation("查询所有分类信息")
     @GetMapping("findAllCategory")
-    public Message findAll(){
-        List<Category> list=categoryService.findAll();
+    public Message findAllCategory(){
+        List<Category> list=categoryService.findAllCategory();
         return MessageUtil.success("message", list);
     }
     //根据Id查找分类信息
+    @ApiOperation("通过id查询分类信息")
     @GetMapping("findByCateGoryId")
-    public Message findById(long id){
-        Category category=categoryService.findById(id);
+    public Message findCategoryById(long id){
+        Category category=categoryService.findCategoryById(id);
         return MessageUtil.success("success", category);
     }
 
     //根据Id删除分类信息
-    @GetMapping("deleteByCateGoryId")
-    public Message deleteById(long id){
+    @ApiOperation("通过id删除分类信息")
+    @GetMapping("deleteCateGoryById")
+    public Message deleteCategoryById(long id){
         try{
-            categoryService.deleteById(id);
+            categoryService.deleteCategoryById(id);
             return MessageUtil.success("删除分类成功！");
         }catch(Exception e){
             e.printStackTrace();
@@ -44,10 +48,11 @@ public class CategoryController {
     }
 
     //增加新的分类信息
+    @ApiOperation("添加新的分类信息")
     @GetMapping("insertCateGory")
-    public Message insert(Category category){
+    public Message insertCategory(Category category){
         try{
-            categoryService.insert(category);
+            categoryService.insertCategory(category);
             return MessageUtil.success("增加新的分类成功!");
         }catch(Exception e){
             e.printStackTrace();
@@ -56,10 +61,11 @@ public class CategoryController {
     }
 
     //根据Id更新分类信息
+    @ApiOperation("通过id更新分类信息")
     @GetMapping("updateCateGory")
-    public Message update(Category category){
+    public Message updateCategory(Category category){
         try{
-            categoryService.updatePrimaryKey(category);
+            categoryService.updateCategory(category);
             return MessageUtil.success("更新分类成功！");
         }catch (Exception e){
             e.printStackTrace();

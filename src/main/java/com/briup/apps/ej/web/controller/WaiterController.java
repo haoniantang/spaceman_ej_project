@@ -18,23 +18,23 @@ public class WaiterController {
     @Autowired
     private IWaiterService waiterService;
 
-    @ApiOperation("模糊查询")
+    @ApiOperation("模糊查询服务员信息")
     @GetMapping("query")
     public Message query(Waiter waiter){
         List<Waiter> list = waiterService.query(waiter);
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("查询所有服务员")
+    @ApiOperation("查询所有服务员信息")
     @GetMapping("findAllWaiter")
-    public Message findAll(){
+    public Message findAllWaiter(){
         List<Waiter> list = waiterService.findAllWaiter();
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("通过id查询")
+    @ApiOperation("通过id查询服务员信息")
     @GetMapping("findWaiterById")
-    public Message findById(
+    public Message findWaiterById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
         Waiter waiter = waiterService.findWaiterById(id);
@@ -43,7 +43,7 @@ public class WaiterController {
 
     @ApiOperation("保存或更新服务员信息")
     @GetMapping("saveOrUpdateWaiter")
-    public Message saveOrUpdate(Waiter waiter){
+    public Message saveOrUpdateWaiter(Waiter waiter){
         try {
             waiterService.saveOrUpdateWaiter(waiter);
             return MessageUtil.success("保存成功!");
@@ -55,7 +55,7 @@ public class WaiterController {
 
     @ApiOperation("通过id删除服务员信息")
     @GetMapping("deleteWaiterById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message deleteWaiterById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             waiterService.deleteWaiterById(id);
             return MessageUtil.success("删除成功!");
@@ -67,7 +67,7 @@ public class WaiterController {
 
     @ApiOperation("通过id恢复服务员信息")
     @GetMapping("recoverWaiterById")
-    public Message recoverById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
+    public Message recoverWaiterById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             waiterService.recoverWaiterById(id);
             return MessageUtil.success("恢复成功!");
@@ -79,7 +79,7 @@ public class WaiterController {
 
     @PostMapping("batchDeleteWaiter")
     @ApiOperation("批量删除服务员信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+    public Message batchDeleteWaiter(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
         waiterService.batchDeleteWaiter(ids);
         return MessageUtil.success("批量删除成功");
     }
