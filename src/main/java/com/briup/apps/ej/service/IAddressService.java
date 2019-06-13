@@ -17,4 +17,6 @@ public interface IAddressService {
 
     void updateAddress(Address address) throws Exception;
 
+    void saveOrUpdateAddress(Address address) throws Exception;
+
 }

@@ -4,17 +4,16 @@ import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Api(description = "顾客管理相关接口")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -46,7 +45,7 @@ public class CustomerController {
 
     @ApiOperation("保存或更新顾客信息")
     @PostMapping("saveOrUpdateCustomer")
-    public Message saveOrUpdateCustomer(Customer customer){
+    public Message saveOrUpdateCustomer(@Valid @ModelAttribute Customer customer){
         try {
             customerService.saveOrUpdateCustomer(customer);
             return MessageUtil.success("保存成功!");

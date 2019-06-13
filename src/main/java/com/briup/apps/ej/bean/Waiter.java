@@ -1,5 +1,9 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
 public class Waiter {
     /**
      *
@@ -8,6 +12,7 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "id号")
     private Long id;
 
     /**
@@ -17,6 +22,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "手机号",required = true)
+    @NotBlank(message = "手机号不能为空")
     private String telephone;
 
     /**
@@ -26,6 +33,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "密码",required = true)
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
@@ -35,6 +44,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "真实姓名",required = true)
+    @NotBlank(message="真实姓名不能为空")
     private String realname;
 
     /**
@@ -44,6 +55,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "身份证号",required = true)
+    @NotBlank(message="身份证号不能为空")
     private String idcard;
 
     /**
@@ -53,6 +66,8 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "状态",required = true)
+    @NotBlank(message="状态不能为空")
     private String status;
 
     /**
@@ -62,6 +77,7 @@ public class Waiter {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "照片 ")
     private String photo;
 
     /**

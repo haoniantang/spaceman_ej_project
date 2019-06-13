@@ -1,5 +1,9 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
 public class OrderLine {
     /**
      *
@@ -8,6 +12,7 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "id号")
     private Long id;
 
     /**
@@ -17,6 +22,7 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "数量")
     private Integer number;
 
     /**
@@ -26,6 +32,8 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品id号",required = true)
+    @NotBlank(message="产品id不能为空")
     private Long productId;
 
     /**
@@ -35,6 +43,8 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "订单id号",required = true)
+    @NotBlank(message="订单id不能为空")
     private Long orderId;
 
     /**

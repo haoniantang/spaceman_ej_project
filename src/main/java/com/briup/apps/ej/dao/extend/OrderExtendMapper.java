@@ -8,6 +8,7 @@ import java.util.List;
 public interface OrderExtendMapper {
     List<OrderExtend> query(
             @Param("customerId") Long customerId,
-            @Param("waiterId") Long waiterId);
+            @Param("waiterId") Long waiterId
 
+    );
 }

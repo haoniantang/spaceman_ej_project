@@ -6,10 +6,9 @@ import java.util.List;
 
 public class OrderExtend extends Order {
     private Customer customer;
-
     private Waiter waiter;
     private Address address;
-    private List<OrderLine> orderLine;
+    private List<OrderLine> orderLines;
 
     public Customer getCustomer() {
         return customer;
@@ -35,11 +34,11 @@ public class OrderExtend extends Order {
         this.address = address;
     }
 
-    public List<OrderLine> getOrderLine() {
-        return orderLine;
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
     }
 
-    public void setOrderLine(List<OrderLine> orderLine) {
-        this.orderLine = orderLine;
+    public void setOrderLines(List<OrderLine> orderLines) {
+        this.orderLines = orderLines;
     }
 }

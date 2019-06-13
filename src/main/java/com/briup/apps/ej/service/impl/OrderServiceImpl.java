@@ -19,11 +19,6 @@ public class OrderServiceImpl implements IOrderService {
     private OrderExtendMapper orderExtendMapper;
 
     @Override
-    public List<OrderExtend> query(Long customerId, Long waiterId) {
-        return orderExtendMapper.query(customerId,waiterId);
-    }
-
-    @Override
     public List<Order> findAllOrder() {
         //创建空模块
         OrderExample example = new OrderExample();
@@ -36,30 +31,30 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public List<Order> query(Order order) {
+    public List<OrderExtend> query(Long customerId, Long waiterId) {
         // 创建空模板
-        OrderExample example = new OrderExample();
-        // 在模板中添加条件
-        if(order.getId()!=null){
-            example.createCriteria().andIdEqualTo(order.getId());
-        }
-        if(order.getAddressId()!=null){
-            example.createCriteria().andAddressIdEqualTo(order.getAddressId());
-        }
-        if(order.getCustomerId()!=null){
-            example.createCriteria().andCustomerIdEqualTo(order.getAddressId());
-        }
-        if(order.getWaiterId()!=null){
-            example.createCriteria().andWaiterIdEqualTo(order.getWaiterId());
-        }
-        if(order.getOrderTime()!=null){
-            example.createCriteria().andOrderTimeEqualTo(order.getOrderTime());
-        }
-        if(order.getTotal()!=null){
-            example.createCriteria().andTotalEqualTo(order.getTotal());
-        }
+//        OrderExample example = new OrderExample();
+//        // 在模板中添加条件
+//        if(order.getId()!=null){
+//            example.createCriteria().andIdEqualTo(order.getId());
+//        }
+//        if(order.getAddressId()!=null){
+//            example.createCriteria().andAddressIdEqualTo(order.getAddressId());
+//        }
+//        if(order.getCustomerId()!=null){
+//            example.createCriteria().andCustomerIdEqualTo(order.getAddressId());
+//        }
+//        if(order.getWaiterId()!=null){
+//            example.createCriteria().andWaiterIdEqualTo(order.getWaiterId());
+//        }
+//        if(order.getOrderTime()!=null){
+//            example.createCriteria().andOrderTimeEqualTo(order.getOrderTime());
+//        }
+//        if(order.getTotal()!=null){
+//            example.createCriteria().andTotalEqualTo(order.getTotal());
+//        }
 
-        return orderMapper.selectByExample(example);
+        return orderExtendMapper.query(customerId,waiterId);
     }
 
     @Override
