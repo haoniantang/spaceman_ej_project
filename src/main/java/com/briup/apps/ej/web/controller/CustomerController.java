@@ -86,5 +86,6 @@ public class CustomerController {
         customerService.batchDeleteCustomer(ids);
         return MessageUtil.success("批量删除成功");
     }
+    
 
 }
