@@ -2,6 +2,8 @@ package com.briup.apps.ej.web.controller;
 
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -23,6 +25,14 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private IOrderService orderService;
+
+    @ApiOperation("查询所有订单信息(级联)")
+    @GetMapping("Jquery")
+    public Message query(Long customerId,
+                         Long waiterId){
+        List<OrderExtend> list =orderService.query(customerId,waiterId);
+        return MessageUtil.success("success",list);
+    }
 
     @ApiOperation("查询所有订单信息")
     @GetMapping("findAllOrder")
