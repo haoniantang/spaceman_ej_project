@@ -21,7 +21,7 @@ public class AddressController {
 
 
     //查询所有的地址，返回是所有的地址
-    @GetMapping("findAll")
+    @GetMapping("findAllAddress")
     public Message findAll(){
         List<Address> list=addressService.findAll();
         return MessageUtil.success("success", list);
@@ -38,13 +38,13 @@ public class AddressController {
         }
     }
     //根据表的id查询地址，返回是该id的地址
-    @GetMapping("selectById")
+    @GetMapping("selectByAddressId")
     public Message selectById(long id){
         Address address=addressService.selectById(id);
         return MessageUtil.success("success",address);
     }
     //根据表的id删除地址
-    @GetMapping("deleteById")
+    @GetMapping("deleteByAddressId")
     public Message deleteById(long id){
         try{
             addressService.deleteById(id);
@@ -55,7 +55,7 @@ public class AddressController {
         }
     }
     //增加新的地址
-    @GetMapping("insert")
+    @GetMapping("insertAddress")
     public Message insert(Address address){
         try{
             addressService.insert(address);
@@ -67,7 +67,7 @@ public class AddressController {
     }
 
     //根据地址Id更新地址
-    @GetMapping("updateById")
+    @GetMapping("updateByAdddressId")
     public Message updateById(Address address){
         try{
             addressService.updateByPrimaryKey(address);

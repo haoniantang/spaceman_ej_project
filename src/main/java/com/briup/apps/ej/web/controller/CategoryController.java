@@ -5,7 +5,6 @@ import com.briup.apps.ej.service.ICategoryService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,20 +19,20 @@ public class CategoryController {
     private ICategoryService  categoryService;
 
     //返回所有的分类信息
-    @GetMapping("findAll")
+    @GetMapping("findAllCategory")
     public Message findAll(){
         List<Category> list=categoryService.findAll();
         return MessageUtil.success("message", list);
     }
     //根据Id查找分类信息
-    @GetMapping("findById")
+    @GetMapping("findByCateGoryId")
     public Message findById(long id){
         Category category=categoryService.findById(id);
         return MessageUtil.success("success", category);
     }
 
     //根据Id删除分类信息
-    @GetMapping("deleteById")
+    @GetMapping("deleteByCateGoryId")
     public Message deleteById(long id){
         try{
             categoryService.deleteById(id);
@@ -45,7 +44,7 @@ public class CategoryController {
     }
 
     //增加新的分类信息
-    @GetMapping("insert")
+    @GetMapping("insertCateGory")
     public Message insert(Category category){
         try{
             categoryService.insert(category);
@@ -57,7 +56,7 @@ public class CategoryController {
     }
 
     //根据Id更新分类信息
-    @GetMapping("update")
+    @GetMapping("updateCateGory")
     public Message update(Category category){
         try{
             categoryService.updatePrimaryKey(category);
