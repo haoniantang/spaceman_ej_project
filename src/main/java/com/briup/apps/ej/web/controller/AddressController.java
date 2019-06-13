@@ -59,6 +59,18 @@ public class AddressController {
             return MessageUtil.error(e.getMessage());
         }
     }
+
+    @ApiOperation("保存或者更新地址信息")
+    @GetMapping("saveOrUpdateAddress")
+    public Message saveOrUpdateAddress(Address address){
+        try{
+            addressService.saveOrUpdateAddress(address);
+            return MessageUtil.success("保存或者更新地址成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
     //增加新的地址
     @ApiOperation("添加新的地址信息")
     @GetMapping("insertAddress")
