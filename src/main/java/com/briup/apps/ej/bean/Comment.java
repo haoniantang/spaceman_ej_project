@@ -1,5 +1,7 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
 public class Comment {
     /**
      *
@@ -8,6 +10,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "ID")
     private Long id;
 
     /**
@@ -17,6 +20,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "评论内容")
     private String content;
 
     /**
@@ -26,6 +30,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "评论时间")
     private Long commentTime;
 
     /**
@@ -35,6 +40,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "订单ID")
     private Long orderId;
 
     /**
