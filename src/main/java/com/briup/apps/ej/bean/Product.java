@@ -2,6 +2,8 @@ package com.briup.apps.ej.bean;
 
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotBlank;
+
 public class Product {
     /**
      *
@@ -10,7 +12,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
-    @ApiParam(value = "顾客ID",required = true)
+    @ApiParam(value = "ID")
     private Long id;
 
     /**
@@ -20,6 +22,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品名称")
+    @NotBlank(message = "不能为空")
     private String name;
 
     /**
@@ -29,6 +33,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品描述")
     private String description;
 
     /**
@@ -38,6 +43,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品价格")
     private Double price;
 
     /**
@@ -47,6 +53,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品状态")
     private String status;
 
     /**
@@ -56,6 +63,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品图片地址")
     private String photo;
 
     /**
@@ -65,6 +73,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "产品类别ID")
     private Long categoryId;
 
     /**

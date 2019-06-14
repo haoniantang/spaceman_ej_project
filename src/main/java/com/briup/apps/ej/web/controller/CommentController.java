@@ -4,17 +4,16 @@ import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.service.ICommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
-
+@Api(description = "评论管理相关接口")
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -55,7 +54,7 @@ public class CommentController {
 
     @ApiOperation("新增一条评论")
     @GetMapping("insertComment")
-    public Message insertComment(Comment comment){
+    public Message insertComment(@Valid @ModelAttribute Comment comment){
         comment.setCommentTime(new Date().getTime());//若前端提交的对象含有时间则此行可注释掉
         commentService.insertComment(comment);
         return  MessageUtil.success("评论成功！");

@@ -4,15 +4,17 @@ import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Api(description = "产品管理相关接口")
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -98,7 +100,7 @@ public class ProductController {
 
     @ApiOperation("添加产品")
     @GetMapping("insertProduct")
-    public Message insertProduct(Product product) {
+    public Message insertProduct(@Valid @ModelAttribute Product product) {
         product.setStatus("1");
         productService.insertProduct(product);
         return MessageUtil.success("添加产品成功！");
@@ -120,17 +122,17 @@ public class ProductController {
 
     @ApiOperation("更新产品")
     @GetMapping("updateProduct")
-    public Message updateProduct(Product product){
+    public Message updateProduct(@Valid @ModelAttribute Product product){
         productService.updateProduct(product);
         return MessageUtil.success("更新产品成功！");
     }
 
-    @ApiOperation("批量更新产品")
+    @ApiOperation("批量更新产品状态")
     @GetMapping("UpdateBatchProductStatus")
     public Message UpdateBatchProductStatus(
             @ApiParam(value = "批量更新产品",required = true)
             @RequestParam("status") String status,
-            @RequestParam(value = "idList")List<Long> idList){
+            @RequestParam(value = "idList") List<Long> idList){
         Map<String,Object> map = new HashMap<String,Object>();
         if(status.equals("0")||status.equals("1")) {
             try {
@@ -165,7 +167,7 @@ public class ProductController {
     @GetMapping("deleteBathProduct")
     public Message deleteBathProduct(
             @ApiParam(value = "主键",required = true)
-            @RequestParam(value = "idList") List<Long> idList){
+            @RequestParam(value = "idList")List<Long> idList){
         try{
             productService.deleteBathProduct(idList);
             return MessageUtil.success("删除成功!");
