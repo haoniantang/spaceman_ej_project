@@ -1,7 +1,6 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
-import com.briup.apps.ej.bean.OrderExample;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.bean.vm.OrderAndOrderLineVM;
 import com.briup.apps.ej.bean.vm.OrderVM;
@@ -14,12 +13,9 @@ public interface IOrderService {
 
     List<OrderVM> queryBasic(Long customerId, Long waiterId);
 
-    //
-    List<OrderExtend> query(Long customerId,Long waiterId);
-
     List<Order> findAllOrder();
 
-    List<Order> query(Order order);
+    List<OrderExtend> query(Long customerId,Long waiterId);
 
     Order findOrderById(long id);
 
