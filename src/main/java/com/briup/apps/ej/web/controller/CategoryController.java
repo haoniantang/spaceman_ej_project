@@ -7,6 +7,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,7 +50,7 @@ public class CategoryController {
 
     //增加新的分类信息
     @ApiOperation("添加新的分类信息")
-    @GetMapping("insertCateGory")
+    @PostMapping("insertCateGory")
     public Message insertCategory(Category category){
         try{
             categoryService.insertCategory(category);
@@ -62,7 +63,7 @@ public class CategoryController {
 
     //根据Id更新分类信息
     @ApiOperation("通过id更新分类信息")
-    @GetMapping("updateCateGory")
+    @PostMapping("updateCateGory")
     public Message updateCategory(Category category){
         try{
             categoryService.updateCategory(category);
