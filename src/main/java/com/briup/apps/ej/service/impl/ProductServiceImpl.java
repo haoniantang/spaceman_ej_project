@@ -24,6 +24,17 @@ public class ProductServiceImpl implements IProductService {
         return num;
     }
 
+    public List<Product> findProductByName(String name)throws Exception{
+        ProductExample  productExample=new ProductExample();
+        productExample.createCriteria().andNameLike("%"+name+"%");
+        List<Product> productList= productMapper.selectByExample(productExample);
+        if(productList.size()==0){
+            throw new Exception("没有查询到相似产品!");
+        }else {
+            return productList;
+        }
+    }
+
     @Override
     public Product findProductById(Long id) throws Exception{
 

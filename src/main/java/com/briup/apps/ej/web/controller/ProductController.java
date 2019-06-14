@@ -35,6 +35,22 @@ public class ProductController {
 
     }
 
+    @ApiOperation("根据姓名模糊查询")
+    @GetMapping("findProductByName")
+    public  Message findProductByName(
+            @ApiParam(value = "查询关键字",required = true)
+            @RequestParam("name") String  name) throws Exception{
+        try{
+            List<Product> products=productService.findProductByName(name);
+            return MessageUtil.success("上线商品总数",products);
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("查询产品失败："+e.getMessage());
+
+        }
+
+    }
+
     @ApiOperation("获得上线商品总数")
     @GetMapping("productNum")
     public  Message productNum(){
