@@ -19,8 +19,8 @@ public class ProductController {
     @Autowired
     IProductService productService;
 
-    @ApiOperation("获得上线商品总数")
-    @GetMapping("productNum")
+    @ApiOperation("根据产品id查询")
+    @GetMapping("findProductById")
     public  Message findProductById(
             @ApiParam(value = "主键",required = true)
             @RequestParam("id") Long id) throws Exception{
