@@ -10,6 +10,11 @@ public interface IProductService {
 
     //产品数
     public  long productNum();
+    //根据产品id查询产品信息
+    public Product findProductById(Long id)throws Exception;
+
+    //根据产品名称查询产品信息
+    public List<Product> findProductByName(String name)throws Exception;
 
     //查询所有产品
     public List<Product> findAllProduct();

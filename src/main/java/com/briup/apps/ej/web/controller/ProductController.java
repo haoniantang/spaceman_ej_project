@@ -19,6 +19,38 @@ public class ProductController {
     @Autowired
     IProductService productService;
 
+    @ApiOperation("根据产品id查询")
+    @GetMapping("findProductById")
+    public  Message findProductById(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("id") Long id) throws Exception{
+        try{
+            Product product=productService.findProductById(id);
+            return MessageUtil.success("上线商品总数",product);
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("查询产品失败："+e.getMessage());
+
+        }
+
+    }
+
+    @ApiOperation("根据姓名模糊查询")
+    @GetMapping("findProductByName")
+    public  Message findProductByName(
+            @ApiParam(value = "查询关键字",required = true)
+            @RequestParam("name") String  name) throws Exception{
+        try{
+            List<Product> products=productService.findProductByName(name);
+            return MessageUtil.success("上线商品总数",products);
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("查询产品失败："+e.getMessage());
+
+        }
+
+    }
+
     @ApiOperation("获得上线商品总数")
     @GetMapping("productNum")
     public  Message productNum(){

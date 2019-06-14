@@ -1,5 +1,7 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiParam;
+
 public class Product {
     /**
      *
@@ -8,6 +10,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
+    @ApiParam(value = "顾客ID",required = true)
     private Long id;
 
     /**
