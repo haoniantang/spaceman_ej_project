@@ -8,6 +8,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,7 +62,8 @@ public class AddressController {
     }
 
     @ApiOperation("保存或者更新地址信息")
-    @GetMapping("saveOrUpdateAddress")
+    //@PostMapping
+    @PostMapping("saveOrUpdateAddress")
     public Message saveOrUpdateAddress(Address address){
         try{
             addressService.saveOrUpdateAddress(address);
