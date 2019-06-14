@@ -23,6 +23,19 @@ public class ProductServiceImpl implements IProductService {
         long num=productMapper.countByExample(productExample);
         return num;
     }
+
+    @Override
+    public Product findProductById(Long id) throws Exception{
+
+        Product product= productMapper.selectByPrimaryKey(id);
+        if(product== null){
+            throw new Exception("要查询的产品不存在!");
+        }else {
+            return product;
+        }
+
+    }
+
     //查询所有
     @Override
     public List<Product> findAllProduct() {

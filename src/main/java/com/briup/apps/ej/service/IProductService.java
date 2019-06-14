@@ -11,6 +11,11 @@ public interface IProductService {
     //产品数
     public  long productNum();
 
+    public Product findProductById(Long id)throws Exception;
+
+    //根据产品id查询产品信息
+    //public Product find
+
     //查询所有产品
     public List<Product> findAllProduct();
 

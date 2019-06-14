@@ -21,6 +21,22 @@ public class ProductController {
 
     @ApiOperation("获得上线商品总数")
     @GetMapping("productNum")
+    public  Message findProductById(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam("id") Long id) throws Exception{
+        try{
+            Product product=productService.findProductById(id);
+            return MessageUtil.success("上线商品总数",product);
+        }catch (Exception e){
+            e.getStackTrace();
+            return MessageUtil.error("查询产品失败："+e.getMessage());
+
+        }
+
+    }
+
+    @ApiOperation("获得上线商品总数")
+    @GetMapping("productNum")
     public  Message productNum(){
         long num=productService.productNum();
         return MessageUtil.success("上线商品总数",num);
