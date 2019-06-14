@@ -43,8 +43,7 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 11:22:11 CST 2019
      */
-    @ApiParam(value = "订单id号",required = true)
-    @NotBlank(message="订单id不能为空")
+
     private Long orderId;
 
     /**
