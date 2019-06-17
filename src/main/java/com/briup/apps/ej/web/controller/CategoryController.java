@@ -28,6 +28,15 @@ public class CategoryController {
         List<Category> list=categoryService.findAllCategory();
         return MessageUtil.success("message", list);
     }
+
+    //返回所有的父级分类信息
+    @ApiOperation("查询所有父级分类信息")
+    @GetMapping("findAllParentCategory")
+    public Message findAllParentCategory(){
+        List<Category> list=categoryService.findAllParentCategory();
+        return MessageUtil.success("所有父级分类信息",list);
+    }
+
     //根据Id查找分类信息
     @ApiOperation("通过id查询分类信息")
     @GetMapping("findByCateGoryId")
