@@ -27,6 +27,13 @@ public class CategoryImpl implements ICategoryService {
     }
 
     @Override
+    public List<Category> findAllParentCategory() {
+        CategoryExample example=new CategoryExample();
+        example.createCriteria().andParentIdIsNull();
+        return categoryMapper.selectByExample(example);
+    }
+
+    @Override
     public void deleteCategoryById(long id) throws Exception {
         Category category=categoryMapper.selectByPrimaryKey(id);
         if(category==null){
