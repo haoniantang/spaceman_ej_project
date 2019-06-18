@@ -1,6 +1,9 @@
 package com.briup.apps.ej.web.controller;
 
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.bean.vm.CustomerVM;
+import com.briup.apps.ej.service.IAddressService;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -19,6 +22,8 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
+    @Autowired
+    private IAddressService addressService;
 
     @ApiOperation("模糊查询顾客信息")
     @GetMapping("query")
@@ -41,6 +46,20 @@ public class CustomerController {
             @RequestParam(value = "id") long id){
         Customer customer = customerService.findCustomerById(id);
         return MessageUtil.success("success",customer);
+    }
+
+    @ApiOperation("查询顾客以及其地址信息")
+    @GetMapping("queryBasic")
+    public Message queryBasic(
+            @ApiParam(value = "主键",required = true)
+            @RequestParam(value = "id") long id){
+
+        List<CustomerVM> customerVMS=customerService.queryBasic(id);
+        for(CustomerVM customerVM : customerVMS){
+            List<Address> addresses = addressService.findAllAddressByCustomerId(customerVM.getCustomerId());
+            customerVM.setAddressList(addresses);
+        }
+        return MessageUtil.success("success",customerVMS);
     }
 
     @ApiOperation("保存或更新顾客信息")

@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
+import com.briup.apps.ej.bean.vm.CustomerVM;
 import com.briup.apps.ej.dao.CustomerMapper;
+import com.briup.apps.ej.dao.extend.CustomerExtendMapper;
 import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class CustomerServiceImpl implements ICustomerService {
     // 自动注入mapper实例
     @Resource
     private CustomerMapper customerMapper;
+    @Resource
+    private CustomerExtendMapper customerExtendMapper;
 
     //模糊查询顾客
     @Override
@@ -96,6 +100,11 @@ public class CustomerServiceImpl implements ICustomerService {
             customer.setStatus("0");
             customerMapper.updateByPrimaryKey(customer);
         }
+    }
+
+    @Override
+    public List<CustomerVM> queryBasic(Long customerId) {
+        return customerExtendMapper.queryBasic(customerId);
     }
 
 }

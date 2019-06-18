@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.CustomerExtendMapper">
+  <!--id,orderTime,total,cutomer_id,waiter_id,address_id-->
+
+    <select id="queryBasic" resultMap="customerVMResultMap">
+      select
+      id as customer_id,
+      telephone as customer_telephone,
+      realname as customer_name,
+      status as customer_status
+      from ej_customer
+      <where>
+        <if test="customerId!=null">
+          id = #{customerId}
+        </if>
+      </where>
+    </select>
+    <resultMap id="customerVMResultMap" type="com.briup.apps.ej.bean.vm.CustomerVM">
+      <result column="customer_id" property="customerId"/>
+      <result column="customer_telephone"  property="customerTelephone" />
+      <result column="customer_name" property="customerName" />
+      <result column="customer_status"  property="customerStatus" />
+<!--      <association property="address" javaType="com.briup.apps.ej.bean.Address">-->
+<!--        <id column="a_id" jdbcType="BIGINT" property="id" />-->
+<!--        <result column="province" jdbcType="VARCHAR" property="province" />-->
+<!--        <result column="city" jdbcType="VARCHAR" property="city" />-->
+<!--        <result column="area" jdbcType="VARCHAR" property="area" />-->
+<!--        <result column="address" jdbcType="VARCHAR" property="address" />-->
+<!--        <result column="telephone" jdbcType="VARCHAR" property="telephone" />-->
+<!--      </association>-->
+    </resultMap>
+
+    <!--id,orderTime,total,cutomer_id,waiter_id,address_id-->
+</mapper>
