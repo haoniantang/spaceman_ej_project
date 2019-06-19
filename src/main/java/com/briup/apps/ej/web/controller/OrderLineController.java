@@ -23,6 +23,24 @@ public class OrderLineController {
     @Autowired
     private IOrderLineService orderLineService;
 
+    @ApiOperation("通过订单id查询订单项")
+    @GetMapping("findOrderLineByOrderId")
+    public Message findOrderLineByOrderId(
+            @ApiParam(value = "order_id",required = true)
+            @RequestParam(value = "order_id") Long order_id){
+        if(order_id != null){
+            List<OrderLine> findOrderLineList=orderLineService.findOrderLineByOrderId(order_id);
+            if(findOrderLineList.size()==0){
+
+                return MessageUtil.success("根据订单id查询订单项成功,该订单暂无订单项！");
+            }else {
+                return MessageUtil.success("根据订单id查询订单项成功！",findOrderLineList);
+            }
+        }else{
+            return MessageUtil.error("查询失败:订单号获取失败！请重试！");
+        }
+    }
+
     @ApiOperation("查询所有订单项信息")
     @GetMapping("findAllOrderLine")
     public Message findAllOrderLine(){

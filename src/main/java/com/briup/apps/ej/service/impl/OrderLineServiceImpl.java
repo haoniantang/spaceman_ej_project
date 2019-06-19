@@ -1,5 +1,6 @@
 package com.briup.apps.ej.service.impl;
 
+import com.briup.apps.ej.bean.OrderExample;
 import com.briup.apps.ej.bean.OrderLine;
 import com.briup.apps.ej.bean.OrderLineExample;
 import com.briup.apps.ej.dao.OrderLineMapper;
@@ -14,6 +15,14 @@ public class OrderLineServiceImpl implements IOrderLineService {
     @Resource
     private OrderLineMapper orderLineMapper;
 
+    @Override
+    public List<OrderLine> findOrderLineByOrderId(long order_id){
+        OrderLineExample orderLineExample=new OrderLineExample();
+        OrderLineExample.Criteria criteria=orderLineExample.createCriteria();
+        criteria.andOrderIdEqualTo(order_id);
+        return orderLineMapper.selectByExample(orderLineExample);
+
+    }
 
     @Override
     public List<OrderLine> findAllOrderLine() {

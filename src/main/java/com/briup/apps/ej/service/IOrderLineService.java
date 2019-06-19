@@ -10,6 +10,8 @@ public interface IOrderLineService {
 
     List<OrderLine> query(OrderLine orderLine);
 
+    List<OrderLine> findOrderLineByOrderId(long order_id);
+
     OrderLine findOrderLineById(long id);
 
     void saveOrUpdateOrderLine(OrderLine orderLine) throws Exception ;
