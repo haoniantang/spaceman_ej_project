@@ -22,7 +22,7 @@ public class ProductController {
     IProductService productService;
 
     @ApiOperation("根据产品id查询")
-    @GetMapping("findProductById")
+    @PostMapping("findProductById")
     public  Message findProductById(
             @ApiParam(value = "主键",required = true)
             @RequestParam("id") Long id) throws Exception{
@@ -54,21 +54,21 @@ public class ProductController {
     }
 
     @ApiOperation("获得上线商品总数")
-    @GetMapping("productNum")
+    @PostMapping("productNum")
     public  Message productNum(){
         long num=productService.productNum();
         return MessageUtil.success("上线商品总数",num);
     }
 
     @ApiOperation("查询全部上线产品")
-    @GetMapping("findAllProduct")
+    @PostMapping("findAllProduct")
     public Message findAllProduct(){
         List<Product> allProduct=productService.findAllProduct();
         return  MessageUtil.success("查询全部上线产品成功",allProduct);
     }
 
     @ApiOperation("分页查询上线产品")
-    @GetMapping("findProductByPage")
+    @PostMapping("findProductByPage")
     public Message findProductByPage(
             @ApiParam(value = "页号",required = true)
             @RequestParam("currentPage")int currentPage){
@@ -83,7 +83,7 @@ public class ProductController {
     }
 
     @ApiOperation("根据分类id查询上线产品")
-    @GetMapping("findProductByCategoryId")
+    @PostMapping("findProductByCategoryId")
     public Message findProductByCategoryId(
             @ApiParam(value = "分类id",required = true)
             @RequestParam("category_id")Long category_id){
