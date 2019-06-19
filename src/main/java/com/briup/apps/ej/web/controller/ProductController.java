@@ -99,7 +99,7 @@ public class ProductController {
     }
 
     @ApiOperation("添加产品")
-    @RequestMapping(value = "insertProduct",method=RequestMethod.POST)
+    @PostMapping("insertProduct")
     public Message insertProduct(@Valid @ModelAttribute Product product) {
         product.setStatus("1");
         productService.insertProduct(product);
@@ -121,7 +121,7 @@ public class ProductController {
     }
 
     @ApiOperation("更新产品")
-    @RequestMapping(value = "updateProduct",method=RequestMethod.POST)
+    @PostMapping("updateProduct")
     public Message updateProduct(@Valid @ModelAttribute Product product){
         productService.updateProduct(product);
         return MessageUtil.success("更新产品成功！");
